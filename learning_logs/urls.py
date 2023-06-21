@@ -1,4 +1,4 @@
-"""Определяем схемы URL для learning_logs"""
+"""Defining the URL scheme for learning_logs"""
 
 from django.urls import path
 from . import views
