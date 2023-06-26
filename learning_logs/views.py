@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Topic
+from .forms import TopicForm
 
 
 def index(request):
@@ -21,3 +22,19 @@ def topic(request, topic_id):
     context = {'topic': topic, 'entries': entries}
     return render(request, 'learning_logs/topic.html', context)
 
+
+def new_topic(request):
+    """Defines a new topic"""
+    if request.method != 'POST':
+        # The date was not sent; empty form is created
+        form = TopicForm()
+    else:
+        # Sent data POST; processing data
+        form = TopicForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('learning_logs:topics')
+
+    # Output an empty or invalid form
+    context = {'form': form}
+    return render(request, 'learning_logs/new_topic.html', context)
