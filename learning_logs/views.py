@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 from .models import Topic, Entry
 from .forms import TopicForm, EntryForm
@@ -98,3 +100,8 @@ def edit_entry(request, entry_id):
 def check_topic_owner(request, topic):
     if topic.owner != request.user:
         raise Http404
+
+
+@api_view(['GET'])
+def test_page(request):
+    return Response('Hello, this a test page')

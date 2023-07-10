@@ -17,4 +17,6 @@ urlpatterns = [
     path('new_entry/<int:topic_id>/', views.new_entry, name='new_entry'),
     # Page for editing entry1
     path('edit_entry/<int:entry_id>/', views.edit_entry, name='edit_entry'),
+    # Test page
+    path('api/v1/test', views.test_page, name='test_page'),
 ]
