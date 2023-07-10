@@ -1,0 +1,61 @@
+  name: Django CICD
+
+  on:
+    push:
+      branches: [ci]
+
+  jobs:
+    tests:
+      runs-on: ubuntu-22.04
+      env:
+        SECRET_KEY: ${{secrets.SECRET_KEY}}
+        DEBUG: '0'
+        ENGINE: ${{secrets.ENGINE}}
+        NAME: ${{secrets.NAME}}
+        HOST: ${{secrets.HOST}}
+        PORT: ${{secrets.PORT}}
+        USER: ${{secrets.USER}}
+        PASSWORD: ${{secrets.PASSWORD}}
+      services:
+        postgres_main:
+          image: postgres:12
+          env:
+            POSTGRES_DB: ${{ env.NAME }}
+            POSTGRES_USER: ${{ env.USER }}
+            POSTGRES_PASSWORD: ${{ env.PASSWORD }}
+          ports:
+            - 5432:5432
+          options:
+            --health-cmd pg_isready
+            --health-interval 5s
+            --health-timeout 5s
+            --health-retries 5
+      steps:
+        - name: Проверка наличия изменений
+          uses: actions/checkout@v3
+
+        - name: Установка python и окружения
+          uses: actions/setup-python@v3
+
+        - name: Установка зависимостей
+          run: pip install -r requirements.txt
+
+        - name: Линтинг кода learning_logs
+          run: flake8 learning_logs --exclude learning_logs/migrations
+
+        - name: Линтинг кода users
+          run: flake8 users --exclude users/migration
+
+        - name: Тестирование кода
+          run: python manage.py test
+          env:
+            SECRET_KEY: ${{ env.SECRET_KEY }}
+            DEBUG: ${{ env.DEBUG }}
+            ENGINE: ${{ env.ENGINE }}
+            NAME: ${{ env.NAME }}
+            HOST: ${{ nv.HOST }}
+            PORT: ${{ env.PORT }}
+            USER: ${{ env.USER }}
+            PASSWORD: ${{ senv.PASSWORD }}
+
+
