@@ -82,7 +82,8 @@ def edit_entry(request, entry_id):
     check_topic_owner(request=request, topic=topic)
 
     if request != 'POST':
-        # Original request; Form is filled in with the data of the current record
+        # Original request;
+        # Form is filled in with the data of the current record
         form = EntryForm(instance=entry)
     else:
         # Sending data of POST; Processing data
@@ -104,4 +105,4 @@ def check_topic_owner(request, topic):
 
 @api_view(['GET'])
 def test_page(request):
-    return Response('Hello, Oleg!')
+    return Response('Hello, Netology!!!')
