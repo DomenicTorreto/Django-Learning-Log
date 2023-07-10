@@ -10,6 +10,7 @@
       env:
         SECRET_KEY: ${{secrets.SECRET_KEY}}
         DEBUG: '0'
+        ALLOWED_HOST: ${{secrets.ALLOWED_HOST}}
         ENGINE: ${{secrets.ENGINE}}
         NAME: ${{secrets.NAME}}
         HOST: ${{secrets.HOST}}
@@ -51,6 +52,7 @@
           env:
             SECRET_KEY: ${{ env.SECRET_KEY }}
             DEBUG: ${{ env.DEBUG }}
+            ALLOWED_HOSTS: ${{ env.ALLOWED_HOST }}
             ENGINE: ${{ env.ENGINE }}
             NAME: ${{ env.NAME }}
             HOST: ${{ env.HOST }}
