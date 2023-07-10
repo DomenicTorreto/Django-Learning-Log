@@ -104,4 +104,4 @@ def check_topic_owner(request, topic):
 
 @api_view(['GET'])
 def test_page(request):
-    return Response('Hello, this a test page')
+    return Response('Hello, Oleg!')
