@@ -12,7 +12,6 @@
 {% endblock page_header %}
 
 {% block content %}
-  <p>Topic:{{ topic }}</p>
 
   <p>Entries:</p>
   <p>
@@ -24,7 +23,7 @@
       <div class="card-mb-3">
         <h4 class="card-header">
             {{ entry.date_added|date:'M d, Y H:1' }}
-            <small><a href="{% url 'learning_logs:edit_entry' entry.id%}">edit entry</a></small>
+            <small><a href="{% url 'learning_logs:edit_entry' entry.id %}">edit entry</a></small>
 
         </h4>
         <div class="card-body">
