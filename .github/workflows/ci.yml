@@ -53,9 +53,9 @@
             DEBUG: ${{ env.DEBUG }}
             ENGINE: ${{ env.ENGINE }}
             NAME: ${{ env.NAME }}
-            HOST: ${{ nv.HOST }}
+            HOST: ${{ env.HOST }}
             PORT: ${{ env.PORT }}
             USER: ${{ env.USER }}
-            PASSWORD: ${{ senv.PASSWORD }}
+            PASSWORD: ${{ env.PASSWORD }}
 
 
