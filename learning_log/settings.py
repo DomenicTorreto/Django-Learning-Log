@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'learning_logs',
     'users',
     # Outside apps
-    'bootstrap4'
+    'bootstrap4',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
